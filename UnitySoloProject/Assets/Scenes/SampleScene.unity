@@ -1661,8 +1661,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99605661c5971d47b7bd183b5fbf256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turnSpeed: 10
+  _turnSpeed: 1
   _cameraTrm: {fileID: 2008755966}
+  _isRotChange: 1
 --- !u!1 &2008755964
 GameObject:
   m_ObjectHideFlags: 0
