@@ -11,38 +11,45 @@ public class UIManager : MonoBehaviour
 
     public Transform _cameraTrm;
 
-    public bool _isRotChange = true;
+    // 시작 로테이션 값을 현재 로테이션 값으로 초기화합니다.
+    private Vector3 _currentRotation = Vector3.zero;
 
-    private float _currentYRotR = 0f;
-    private float _currentYRotL = 0f;
-    
     private float saveYRotL;
 
     public void RRotationChange()
     {
-        _currentYRotR = Mathf.Clamp(_currentYRotR + 90f, -90f, 90f);
-        StartCoroutine(RotationChange(_currentYRotR));
+        float targetYRot = _currentRotation.y + 90f;
+        if (targetYRot <= 180f)
+        {
+            StartCoroutine(RotationChange(targetYRot));
+            _currentRotation = new Vector3(_currentRotation.x, targetYRot, _currentRotation.z);
+        }
     }
 
     public void LRotationChange()
     {
-        
-        _currentYRotL = Mathf.Clamp(_currentYRotL - 90f, -90f, 90f);
-        StartCoroutine(RotationChange(_currentYRotL));
+        float targetYRot = _currentRotation.y - 90f;
+        if (targetYRot >= 0f)
+        {
+            StartCoroutine(RotationChange(targetYRot));
+            _currentRotation = new Vector3(_currentRotation.x, targetYRot, _currentRotation.z);
+        }
     }
 
     private IEnumerator RotationChange(float targetYRot)
     {
-        float startYRot = _cameraTrm.localRotation.eulerAngles.y;
+        // 시작 로테이션 값을 현재 로테이션 값으로 변경합니다.
+        Vector3 startRotation = _cameraTrm.localRotation.eulerAngles;
         float elapsedTime = 0;
 
         while (elapsedTime < _turnSpeed)
         {
             elapsedTime += Time.deltaTime;
-            float yRot = Mathf.Lerp(startYRot, targetYRot, elapsedTime / _turnSpeed);
+            float yRot = Mathf.Lerp(startRotation.y, targetYRot, elapsedTime / _turnSpeed);
             _cameraTrm.localRotation = Quaternion.Euler(0, yRot, 0);
             yield return null;
         }
+
         _cameraTrm.localRotation = Quaternion.Euler(0, targetYRot, 0);
     }
 }
