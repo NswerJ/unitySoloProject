@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     private Light _light;
     public Transform _cameraTrm;
 
+    [SerializeField]
+    private bool _turn = false;
+
     // 시작 로테이션 값을 현재 로테이션 값으로 초기화합니다.
     private Vector3 _currentRotation = Vector3.zero;
 
@@ -19,11 +22,14 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        _light = transform.Find("LightHandle").GetComponent<Light>(); 
+        _light = FindObjectOfType<Light>();
+        _light.intensity = 2f;
+        _currentRotation = _cameraTrm.eulerAngles;
     }
 
     public void RRotationChange()
     {
+        _turn = true;
         float targetYRot = _currentRotation.y + 90f;
         if (targetYRot <= 180f)
         {
@@ -34,6 +40,7 @@ public class UIManager : MonoBehaviour
 
     public void LRotationChange()
     {
+        _turn = true;
         float targetYRot = _currentRotation.y - 90f;
         if (targetYRot >= 0f)
         {
@@ -43,13 +50,16 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (_currentRotation.y == 90f)
+        if (_turn)
         {
-            _light.intensity = 2f;
-        }
-        else if (_currentRotation.y == 0 || _currentRotation.y == 180)
-        {
-            _light.intensity = 8f;
+            if (_currentRotation.y == 90f)
+            {
+                _light.intensity = 2f;
+            }
+            else if (_currentRotation.y > 90f || _currentRotation.y < 90f)
+            {
+                _light.intensity = 8f;
+            }
         }
     }
 
@@ -57,6 +67,7 @@ public class UIManager : MonoBehaviour
     {
         // 시작 로테이션 값을 현재 로테이션 값으로 변경합니다.
         Vector3 startRotation = _cameraTrm.localRotation.eulerAngles;
+        Debug.Log(targetYRot);
         float elapsedTime = 0;
         _light.enabled = false;
         while (elapsedTime < _turnSpeed)
@@ -68,6 +79,7 @@ public class UIManager : MonoBehaviour
         }
 
         _light.enabled = true;
+        _turn = false;
         _cameraTrm.localRotation = Quaternion.Euler(0, targetYRot, 0);
     }
 }
