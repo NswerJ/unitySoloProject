@@ -21,8 +21,8 @@ public class UIManager : MonoBehaviour
         float targetYRot = _currentRotation.y + 90f;
         if (targetYRot <= 180f)
         {
-            StartCoroutine(RotationChange(targetYRot));
             _currentRotation = new Vector3(_currentRotation.x, targetYRot, _currentRotation.z);
+            StartCoroutine(RotationChange(targetYRot));
         }
     }
 
@@ -31,8 +31,8 @@ public class UIManager : MonoBehaviour
         float targetYRot = _currentRotation.y - 90f;
         if (targetYRot >= 0f)
         {
-            StartCoroutine(RotationChange(targetYRot));
             _currentRotation = new Vector3(_currentRotation.x, targetYRot, _currentRotation.z);
+            StartCoroutine(RotationChange(targetYRot));
         }
     }
 
