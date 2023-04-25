@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private Transform player; // 플레이어 Transform 컴포넌트
-    [SerializeField] private float mouseSensitivity = 100f; // 마우스 감도
     [SerializeField]
     Texture2D cursorImg;
-    private float xRotation = 0f; // X축 회전값
 
     private void Start()
     {
@@ -17,6 +15,12 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
-       
+
     }
+
+    private void OnGUI()
+    {
+        GUI.skin.settings.cursorColor = Color.red;
+    }
+
 }

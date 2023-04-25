@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         _light = FindObjectOfType<Light>();
-        _light.intensity = 2f;
+        _light.intensity = 1f;
         _currentRotation = _cameraTrm.eulerAngles;
     }
 
@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
         {
             if (_currentRotation.y == 90f)
             {
-                _light.intensity = 2f;
+                _light.intensity = 1f;
             }
             else if (_currentRotation.y > 90f || _currentRotation.y < 90f)
             {
