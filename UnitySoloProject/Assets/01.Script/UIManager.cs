@@ -15,24 +15,21 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private bool _turn = false;
 
-    // 시작 로테이션 값을 현재 로테이션 값으로 초기화합니다.
     private Vector3 _currentRotation = Vector3.zero;
-
-    private float saveYRotL;
 
     private void Awake()
     {
-        _light = FindObjectOfType<Light>();
+        _light = GameObject.Find("LightHandle").GetComponent<Light>();
         _light.intensity = 1f;
         _currentRotation = _cameraTrm.eulerAngles;
     }
 
     public void RRotationChange()
     {
-        _turn = true;
         float targetYRot = _currentRotation.y + 90f;
-        if (targetYRot <= 180f)
+        if (targetYRot <= 180f && _turn == false)
         {
+            _turn = true;
             _currentRotation = new Vector3(_currentRotation.x, targetYRot, _currentRotation.z);
             StartCoroutine(RotationChange(targetYRot));
         }
@@ -40,10 +37,10 @@ public class UIManager : MonoBehaviour
 
     public void LRotationChange()
     {
-        _turn = true;
         float targetYRot = _currentRotation.y - 90f;
-        if (targetYRot >= 0f)
+        if (targetYRot >= 0f && _turn == false)
         {
+            _turn = true;
             _currentRotation = new Vector3(_currentRotation.x, targetYRot, _currentRotation.z);
             StartCoroutine(RotationChange(targetYRot));
         }
@@ -70,6 +67,7 @@ public class UIManager : MonoBehaviour
         Debug.Log(targetYRot);
         float elapsedTime = 0;
         _light.enabled = false;
+        Debug.Log(_light.enabled);
         while (elapsedTime < _turnSpeed)
         {
             elapsedTime += Time.deltaTime;
@@ -77,9 +75,8 @@ public class UIManager : MonoBehaviour
             _cameraTrm.localRotation = Quaternion.Euler(0, yRot, 0);
             yield return null;
         }
-
+        _cameraTrm.localRotation = Quaternion.Euler(0, targetYRot, 0);
         _light.enabled = true;
         _turn = false;
-        _cameraTrm.localRotation = Quaternion.Euler(0, targetYRot, 0);
     }
 }
