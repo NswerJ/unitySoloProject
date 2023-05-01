@@ -1,0 +1,31 @@
+#Container {
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    -unity-text-align: upper-center;
+    white-space: normal;
+    margin-top: 10%;
+    font-size: 200px;
+    color: rgb(255, 255, 255);
+    -unity-font: url('project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&guid=8b286184e29dd0a4ba08c3d96ed22d22&type=3#Nightmare 5');
+    -unity-font-definition: url('project://database/Assets/08.Font/Nightmare%205%20SDF.asset?fileID=11400000&guid=09ee949f4a181d24fbd13b27449d20e2&type=2#Nightmare 5 SDF');
+}
+
+#Button {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 176px;
+    margin-left: 176px;
+    margin-right: 176px;
+    margin-bottom: 176px;
+}
+
+#Button > .btn {
+    margin-top: 123px;
+    margin-left: 123px;
+    margin-right: 123px;
+    margin-bottom: 123px;
+}
