@@ -3,9 +3,9 @@
     <ui:VisualElement name="Container">
         <ui:Label text="Open the Door!!!" display-tooltip-when-elided="true" name="Title" class="title" />
         <ui:VisualElement name="Button" class="btnManager">
-            <ui:Button text="Button" display-tooltip-when-elided="true" name="StartButton" class="btn" style="margin-top: 10px;" />
-            <ui:Button text="Button" display-tooltip-when-elided="true" name="ExplainButton" class="btn" style="margin-top: 10px;" />
-            <ui:Button text="Button" display-tooltip-when-elided="true" name="SettingButton" class="btn" style="margin-top: 10px;" />
+            <ui:Button text="Start Game" display-tooltip-when-elided="true" name="StartButton" class="btn" style="margin-top: 10px;" />
+            <ui:Button text="Explain" display-tooltip-when-elided="true" name="ExplainButton" class="btn" style="margin-top: 10px;" />
+            <ui:Button text="Setting" display-tooltip-when-elided="true" name="SettingButton" class="btn" style="margin-top: 10px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

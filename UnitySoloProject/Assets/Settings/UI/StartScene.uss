@@ -17,15 +17,27 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 176px;
-    margin-left: 176px;
-    margin-right: 176px;
-    margin-bottom: 176px;
+    margin-top: 64px;
+    margin-left: 64px;
+    margin-right: 64px;
+    margin-bottom: 64px;
+}
+
+#Button > .btn:hover {
+    background-color: rgba(96, 3, 3, 255);
+    transition-property: background-color, scale;
+    transition-duration: 0.5s, 0.5s;
+    scale: 1.2 1;
 }
 
 #Button > .btn {
-    margin-top: 123px;
-    margin-left: 123px;
-    margin-right: 123px;
-    margin-bottom: 123px;
+    margin-top: 77px;
+    margin-left: 77px;
+    margin-right: 77px;
+    margin-bottom: 77px;
+    width: 30%;
+    height: 20%;
+    background-color: rgba(149, 0, 0, 255);
+    color: rgba(0, 0, 0, 255);
+    font-size: 50px;
 }
