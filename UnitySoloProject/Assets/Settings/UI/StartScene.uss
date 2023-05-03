@@ -24,10 +24,11 @@
 }
 
 #Button > .btn:hover {
-    background-color: rgba(96, 3, 3, 255);
-    transition-property: background-color, scale;
-    transition-duration: 0.5s, 0.5s;
+    background-color: rgb(96, 3, 3);
+    transition-property: background-color, scale, ignored;
+    transition-duration: 0.5s, 0.5s, 0s;
     scale: 1.2 1;
+    rotate: 10deg;
 }
 
 #Button > .btn {
@@ -35,9 +36,28 @@
     margin-left: 77px;
     margin-right: 77px;
     margin-bottom: 77px;
-    width: 30%;
+    width: 20%;
     height: 20%;
-    background-color: rgba(149, 0, 0, 255);
-    color: rgba(0, 0, 0, 255);
-    font-size: 50px;
+    background-color: rgb(149, 0, 0);
+    color: rgb(0, 0, 0);
+    font-size: 100px;
+    -unity-font: url('project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&guid=8b286184e29dd0a4ba08c3d96ed22d22&type=3#Nightmare 5');
+    -unity-font-definition: url('project://database/Assets/08.Font/Nightmare%205%20SDF.asset?fileID=11400000&guid=09ee949f4a181d24fbd13b27449d20e2&type=2#Nightmare 5 SDF');
+    -unity-font-style: normal;
+    -unity-text-align: upper-center;
+    white-space: normal;
+}
+
+#Explain {
+    background-color: rgba(0, 0, 0, 0.73);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+}
+
+#Explain.down {
+    transition-property: top;
+    transition-duration: 0.6s;
 }

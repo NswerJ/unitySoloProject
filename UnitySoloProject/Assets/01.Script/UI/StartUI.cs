@@ -16,12 +16,19 @@ public class StartUI : MonoBehaviour
 
     private void OnEnable()
     {
-        VisualElement root = _uiDocument.rootVisualElement;
-        Button btn = root.Q<Button>("StartButton");
 
-        btn.RegisterCallback<ClickEvent>(e =>
+        VisualElement root = _uiDocument.rootVisualElement;
+        Button startBtn = root.Q<Button>("StartButton");
+        Button exBtn = root.Q<Button>("ExplainButton");
+        VisualElement exPlain = root.Q("Explain");
+
+        startBtn.RegisterCallback<ClickEvent>(e =>
         {
             SceneManager.LoadScene("Game");
+        });
+        exBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            exPlain.AddToClassList("down");
         });
     }
 }
