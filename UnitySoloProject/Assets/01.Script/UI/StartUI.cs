@@ -20,6 +20,7 @@ public class StartUI : MonoBehaviour
         VisualElement root = _uiDocument.rootVisualElement;
         Button startBtn = root.Q<Button>("StartButton");
         Button exBtn = root.Q<Button>("ExplainButton");
+        Button exBtnX = root.Q<Button>("ExButtonX");
         VisualElement exPlain = root.Q("Explain");
 
         startBtn.RegisterCallback<ClickEvent>(e =>
@@ -29,6 +30,10 @@ public class StartUI : MonoBehaviour
         exBtn.RegisterCallback<ClickEvent>(e =>
         {
             exPlain.AddToClassList("down");
+        });
+        exBtnX.RegisterCallback<ClickEvent>(e =>
+        {
+            exPlain.RemoveFromClassList("down");
         });
     }
 }

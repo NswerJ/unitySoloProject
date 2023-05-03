@@ -55,9 +55,28 @@
     position: absolute;
     align-items: center;
     justify-content: center;
+    top: -100%;
 }
 
 #Explain.down {
     transition-property: top;
     transition-duration: 0.6s;
+    top: 0;
+    transition-delay: 0.5s;
+}
+
+#ExButtonX:hover {
+    background-color: rgba(94, 0, 0, 255);
+    scale: 3 3;
+    rotate: 30deg;
+    transition-property: rotate, scale, background-color;
+    transition-duration: 0.5s, 0.5s, 0.5s;
+    transition-delay: 0s, 0s, 0s;
+}
+
+#ExButtonX {
+    scale: 2 2;
+    background-color: rgba(250, 20, 20, 255);
+    top: -50%;
+    right: -45%;
 }
