@@ -12,5 +12,9 @@
             <ui:Label text="마우스 왼쪽 : 왼쪽 회전&#10;마우스 오른쪽 : 오른쪽 회전&#10;R 키 : 플래시&#10;게임 방법 : 문에 표식 들을 클릭하여 게이지를 채우고&#10;오른쪽이나 왼쪽을 확인하여 살인마가 보일 경우 플래시를 터트려&#10;살인마를 쫓아낸다." display-tooltip-when-elided="true" name="ExplainText" style="-unity-text-align: upper-center; font-size: 32px; -unity-font-definition: url(&apos;project://database/Assets/08.Font/ChosunCentennial_ttf/ChosunCentennial_ttf%20SDF.asset?fileID=11400000&amp;guid=724352104c2fb654caa3977e14448cda&amp;type=2#ChosunCentennial_ttf SDF&apos;); -unity-font: url(&apos;project://database/Assets/08.Font/ChosunCentennial_ttf/ChosunCentennial_ttf.ttf?fileID=12800000&amp;guid=a1d85d7fd4c71aa45824925c417fb2c8&amp;type=3#ChosunCentennial_ttf&apos;);" />
             <ui:Button text="X" display-tooltip-when-elided="true" name="ExButtonX" />
         </ui:VisualElement>
+        <ui:VisualElement name="Setting">
+            <ui:VisualElement name="Panel" style="background-color: rgba(87, 87, 87, 0.89); position: absolute; margin-left: 0; align-items: center; justify-content: flex-start; width: 75%; height: 75%;" />
+            <ui:Button text="X" display-tooltip-when-elided="true" name="StButtonX" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
