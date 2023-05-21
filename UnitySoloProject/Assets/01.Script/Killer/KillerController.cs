@@ -41,6 +41,15 @@ public class KillerController : MonoBehaviour
                 // 이동
                 transform.Translate(directionToPlayer * _movementSpeed * Time.deltaTime, Space.World);
             }
+            else
+            {
+                // 플레이어 스크립트의 Light 컴포넌트를 찾아서 intensity 변경
+                Light playerLight = _playerTransform.GetComponentInChildren<Light>();
+                if (playerLight != null)
+                {
+                    playerLight.intensity = 2f;
+                }
+            }
         }
     }
 

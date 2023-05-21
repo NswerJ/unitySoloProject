@@ -143,6 +143,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 25
-  _minDistanceToPlayer: 1
+  _minDistanceToPlayer: 1.5
   _minChaseTime: 5
   _maxChaseTime: 8
