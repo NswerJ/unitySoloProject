@@ -29,7 +29,7 @@ public class KillerSpawner : MonoBehaviour
     {
         // 적 스폰 최소/최대 시간 간격 내에서 랜덤 시간 생성
         float spawnTime = Random.Range(_minSpawnTime, _maxSpawnTime);
-
+        yield return new WaitForSeconds(spawnTime);
         // 랜덤한 위치에서 적 생성
         Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
         GameObject enemyObject = Instantiate(_killerPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -62,7 +62,6 @@ public class KillerSpawner : MonoBehaviour
         }
 
         // 다음 적 스폰
-        yield return new WaitForSeconds(spawnTime);
         StartCoroutine(SpawnEnemy());
     }
 }

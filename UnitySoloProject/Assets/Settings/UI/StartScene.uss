@@ -113,3 +113,6 @@
     top: -40%;
     right: -45%;
 }
+
+#volumeSlider {
+}

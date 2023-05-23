@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class KillerController : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class KillerController : MonoBehaviour
     private bool _isChasing = false; // 추격 상태 여부
     private float _chaseTimer; // 추격 타이머
 
+    public CinemachineVirtualCamera VirtualCamera;
+    private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
+
     private void Start()
     {
         _playerTransform = GameObject.FindWithTag("Player").transform;
+        virtualCameraNoise = VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
         // 추격 시작 타이머 설정
         _chaseTimer = Random.Range(_minChaseTime, _maxChaseTime);

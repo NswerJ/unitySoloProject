@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UIElements;
+
 
 public class SoundManager : MonoBehaviour
 {
-    private Slider _soundSlider;
+    public AudioMixer mixer;
+    public Slider volumeSlider;
+    public UIDocument document;
+
+
+    private VisualElement root;
+
 
     private void OnEnable()
     {
-        // UXML 파일에서 Slider 요소를 찾아 할당합니다.
-        _soundSlider = GetComponent<UIDocument>().rootVisualElement.Q<Slider>("soundslider");
-
-        // Slider의 값이 변경될 때마다 사운드를 조절하는 메서드를 호출합니다.
-        _soundSlider.RegisterValueChangedCallback(OnSoundSliderValueChanged);
+        root = document.rootVisualElement;
+        volumeSlider = root.Q<Slider>("volumeSlider");
+        volumeSlider.RegisterCallback<ChangeEvent<float>>(OnSliderValueChanged);
     }
 
-    private void OnSoundSliderValueChanged(ChangeEvent<float> evt)
+    private void OnSliderValueChanged(ChangeEvent<float> evt)
     {
-        // Slider의 값에 따라 사운드를 조절하는 로직을 구현합니다.
-        float soundValue = evt.newValue;
-        
+        Debug.Log("씨발");
+        mixer.SetFloat("StartBGM", volumeSlider.value);
     }
 }

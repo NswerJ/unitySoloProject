@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1780675797431113251}
   - component: {fileID: 1780675797431113248}
   - component: {fileID: 1780675797431113249}
+  - component: {fileID: 8856732067416515423}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -41,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780675797431113247}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1780675797431113248
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97,6 +98,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8856732067416515423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780675797431113247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e290d8ca1a5b534409576b346e09dba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: 25
+  _minDistanceToPlayer: 1.5
+  _minChaseTime: 5
+  _maxChaseTime: 8
 --- !u!1 &1780675798873643487
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +123,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1780675798873643486}
-  - component: {fileID: 1780675798873643489}
   m_Layer: 0
   m_Name: Killer
   m_TagString: Killer
@@ -130,19 +146,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1780675798873643489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780675798873643487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e290d8ca1a5b534409576b346e09dba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementSpeed: 25
-  _minDistanceToPlayer: 1.5
-  _minChaseTime: 5
-  _maxChaseTime: 8
