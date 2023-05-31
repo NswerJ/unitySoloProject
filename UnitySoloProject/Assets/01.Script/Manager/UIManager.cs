@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private bool _turn = false;
+    private bool _canRotate = true; // Added variable to control rotation
 
     private Vector3 _currentRotation = Vector3.zero;
 
@@ -22,6 +23,37 @@ public class UIManager : MonoBehaviour
         _light = GameObject.Find("LightHandle").GetComponent<Light>();
         _light.intensity = 1f;
         _currentRotation = _cameraTrm.eulerAngles;
+    }
+
+    public void Update()
+    {
+        if (_turn)
+        {
+            if (_currentRotation.y == 90f)
+            {
+                _light.intensity = 1f;
+            }
+            else if (_currentRotation.y > 90f || _currentRotation.y < 90f)
+            {
+                _light.intensity = 8f;
+            }
+        }
+
+        float mousePositionX = Input.mousePosition.x;
+        float screenWidth = Screen.width;
+
+        if (_canRotate && mousePositionX < screenWidth * 0.25f)
+        {
+            LRotationChange();
+        }
+        else if (_canRotate && mousePositionX > screenWidth * 0.75f)
+        {
+            RRotationChange();
+        }
+        else
+        {
+            StopRotation();
+        }
     }
 
     public void RRotationChange()
@@ -45,29 +77,20 @@ public class UIManager : MonoBehaviour
             StartCoroutine(RotationChange(targetYRot));
         }
     }
-    private void Update()
+
+    public void StopRotation()
     {
-        if (_turn)
-        {
-            if (_currentRotation.y == 90f)
-            {
-                _light.intensity = 1f;
-            }
-            else if (_currentRotation.y > 90f || _currentRotation.y < 90f)
-            {
-                _light.intensity = 8f;
-            }
-        }
+        _turn = false;
     }
 
     private IEnumerator RotationChange(float targetYRot)
     {
-        // 시작 로테이션 값을 현재 로테이션 값으로 변경합니다.
+        _canRotate = false; // Disable rotation during the delay
+
         Vector3 startRotation = _cameraTrm.localRotation.eulerAngles;
-        Debug.Log(targetYRot);
         float elapsedTime = 0;
         _light.enabled = false;
-        Debug.Log(_light.enabled);
+
         while (elapsedTime < _turnSpeed)
         {
             elapsedTime += Time.deltaTime;
@@ -75,8 +98,12 @@ public class UIManager : MonoBehaviour
             _cameraTrm.localRotation = Quaternion.Euler(0, yRot, 0);
             yield return null;
         }
+
         _cameraTrm.localRotation = Quaternion.Euler(0, targetYRot, 0);
         _light.enabled = true;
         _turn = false;
+
+        yield return new WaitForSeconds(.5f); // Add a 1-second delay
+        _canRotate = true; // Enable rotation after the delay
     }
 }
