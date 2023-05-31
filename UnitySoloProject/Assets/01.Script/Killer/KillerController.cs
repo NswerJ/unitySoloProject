@@ -31,7 +31,7 @@ public class KillerController : MonoBehaviour
         if (_isChasing)
         {
             Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
-
+            directionToPlayer.y = 0;
             _playerTransform.rotation = Quaternion.LookRotation(-directionToPlayer);
 
             float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
