@@ -42,11 +42,11 @@ public class UIManager : MonoBehaviour
         float mousePositionX = Input.mousePosition.x;
         float screenWidth = Screen.width;
 
-        if (_canRotate && mousePositionX < screenWidth * 0.25f)
+        if (_canRotate && mousePositionX < screenWidth * 0.1f)
         {
             LRotationChange();
         }
-        else if (_canRotate && mousePositionX > screenWidth * 0.75f)
+        else if (_canRotate && mousePositionX > screenWidth * 0.9f)
         {
             RRotationChange();
         }
