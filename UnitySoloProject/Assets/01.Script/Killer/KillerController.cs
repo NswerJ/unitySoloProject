@@ -48,7 +48,7 @@ public class KillerController : MonoBehaviour
                 _boomSound.Play();
                 if (playerLight != null)
                 {
-                    playerLight.intensity = 2f;
+                    playerLight.intensity = 8f;
                 }
                 Debug.Log("!!!!!");
                 _isChasing = false;

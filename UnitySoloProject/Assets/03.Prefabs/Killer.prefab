@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 30
-  _minDistanceToPlayer: 1
+  _minDistanceToPlayer: 1.5
   _minChaseTime: 5
   _maxChaseTime: 8
   _boomSound: {fileID: 839226107046108424}
