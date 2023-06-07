@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    public Slider slider; // 첫 번째 슬라이더를 할당할 변수
-    public Slider secondSlider; // 두 번째 슬라이더를 할당할 변수
-    public LayerMask targetLayer; // 레이어 마스크로 타겟 레이어를 지정
+    public Slider slider;
+    public Slider secondSlider;
+    public LayerMask targetLayer;
 
-    private float decreaseAmount = 0.2f; // 슬라이더가 감소할 양
-    private float decreaseInterval = 0.5f; // 슬라이더가 감소하는 시간 간격
-    private float timer; // 슬라이더 감소를 위한 타이머
+    private float decreaseAmount = 0.1f;
+    private float decreaseInterval = 0.5f;
+    private float timer;
     private Camera mainCamera;
     private bool firstSlider = false;
     private bool secondSliderActive = false;
@@ -38,7 +38,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, targetLayer))
+            Vector3 clickPosition = Input.mousePosition;
+            Ray ray = Camera.main.ScreenPointToRay(clickPosition);
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
             {
                 if (!firstSlider && !secondSliderActive)
                 {
@@ -48,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
                 if (firstSlider && !secondSliderActive)
                 {
-                    slider.value += 1;
+                    slider.value += 2;
 
                     if (slider.value >= slider.maxValue)
                     {
@@ -60,8 +63,11 @@ public class PlayerController : MonoBehaviour
 
                 if (secondSliderActive)
                 {
-                    secondSlider.value += 1;
+                    secondSlider.value += 2;
                 }
+
+                // 푸쉬(push) 코드 추가
+                PoolList.instance.Push(hit.transform.gameObject);
             }
         }
 
