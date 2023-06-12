@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Slider slider;
     public Slider secondSlider;
     public LayerMask targetLayer;
+    public LayerMask killerLayer; // 적 레이어
 
     private float decreaseAmount = 0.1f;
     private float decreaseInterval = 0.5f;
@@ -17,8 +18,6 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private bool firstSlider = false;
     private bool secondSliderActive = false;
-
-    RaycastHit hit;
 
     private void Awake()
     {
@@ -32,16 +31,18 @@ public class PlayerController : MonoBehaviour
         timer = decreaseInterval;
         slider.gameObject.SetActive(false);
         secondSlider.gameObject.SetActive(false);
+        killerLayer = LayerMask.GetMask("Killer"); // 적 레이어 가져오기
     }
 
     private void Update()
     {
+        // 왼쪽 마우스 버튼 클릭 시 실행
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 clickPosition = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(clickPosition);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, targetLayer))
             {
                 if (!firstSlider && !secondSliderActive)
                 {
@@ -68,6 +69,22 @@ public class PlayerController : MonoBehaviour
 
                 // 푸쉬(push) 코드 추가
                 PoolList.instance.Push(hit.transform.gameObject);
+            }
+        }
+
+        // 오른쪽 마우스 버튼 클릭 시 실행
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.Log("눌러지냐");
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, killerLayer)) // 적 레이어를 사용하여 충돌 검사
+            {
+                Debug.Log("사라지는게 맞아");
+                GameObject clickedObject = hit.collider.gameObject;
+                    Destroy(clickedObject);
+                    KillerSpawner killerSpawner = FindObjectOfType<KillerSpawner>();
+                    killerSpawner._spawnedKillerCount--;
             }
         }
 
@@ -102,6 +119,7 @@ public class PlayerController : MonoBehaviour
             timer = decreaseInterval;
         }
     }
+
 }
 
 

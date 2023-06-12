@@ -303,9 +303,11 @@ GameObject:
   - component: {fileID: 839226107046108430}
   - component: {fileID: 839226107046108431}
   - component: {fileID: 839226107046108424}
-  m_Layer: 0
+  - component: {fileID: 7150117745461521906}
+  - component: {fileID: 1079419007277550116}
+  m_Layer: 8
   m_Name: Killer
-  m_TagString: Untagged
+  m_TagString: Killer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,8 +340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e290d8ca1a5b534409576b346e09dba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 30
-  _minDistanceToPlayer: 1.5
+  _movementSpeed: 25
+  _minDistanceToPlayer: 1.7
   _minChaseTime: 5
   _maxChaseTime: 8
   _boomSound: {fileID: 839226107046108424}
@@ -354,7 +356,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 0213cd2fd3078c643bd834e0b512ed07, type: 2}
   m_audioClip: {fileID: 8300000, guid: 428b1ca1e621a434cbeadbbd7e67f004, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -439,6 +441,43 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &7150117745461521906
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839226107046108425}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1079419007277550116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839226107046108425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RigLayers:
+  - m_Rig: {fileID: 0}
+    m_Active: 1
+  m_Effectors: []
 --- !u!1 &857848247149991434
 GameObject:
   m_ObjectHideFlags: 0

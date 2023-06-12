@@ -10,7 +10,7 @@ public class KillerSpawner : MonoBehaviour
     public float _maxSpawnTime = 8f; // 적 스폰 최대 시간 간격
 
     private Transform[] _spawnPoints; // 적 스폰 위치 배열
-    private int _spawnedKillerCount; // 현재 스폰된 적 수
+    public int _spawnedKillerCount; // 현재 스폰된 적 수
 
     private void Start()
     {
@@ -40,20 +40,7 @@ public class KillerSpawner : MonoBehaviour
 
         // 스폰된 적 수 증가
         _spawnedKillerCount++;
-        // T 키를 누르면 스폰된 모든 적 제거
-        while (_spawnedKillerCount > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Killer"))
-                {
-                    Destroy(enemy);
-                }
-                _spawnedKillerCount = 0; // 스폰된 적 수 초기화
-                break;
-            }
-            yield return null;
-        }
+        
 
         // 한마리만 스폰했을 경우
         if (_spawnedKillerCount == 1)
