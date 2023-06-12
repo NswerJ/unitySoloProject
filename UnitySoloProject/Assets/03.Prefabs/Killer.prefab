@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 839226107046108424}
   - component: {fileID: 7150117745461521906}
   - component: {fileID: 1079419007277550116}
+  - component: {fileID: 8228715677818424576}
   m_Layer: 8
   m_Name: Killer
   m_TagString: Killer
@@ -478,6 +479,20 @@ MonoBehaviour:
   - m_Rig: {fileID: 0}
     m_Active: 1
   m_Effectors: []
+--- !u!136 &8228715677818424576
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839226107046108425}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.47
+  m_Height: 1.76
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!1 &857848247149991434
 GameObject:
   m_ObjectHideFlags: 0

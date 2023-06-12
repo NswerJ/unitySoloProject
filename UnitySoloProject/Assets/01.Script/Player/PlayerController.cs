@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private bool firstSlider = false;
     private bool secondSliderActive = false;
+    RaycastHit hit;
+
 
     private void Awake()
     {
@@ -82,9 +84,9 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("사라지는게 맞아");
                 GameObject clickedObject = hit.collider.gameObject;
-                    Destroy(clickedObject);
-                    KillerSpawner killerSpawner = FindObjectOfType<KillerSpawner>();
-                    killerSpawner._spawnedKillerCount--;
+                Destroy(clickedObject);
+                KillerSpawner killerSpawner = FindObjectOfType<KillerSpawner>();
+                killerSpawner._spawnedKillerCount--;
             }
         }
 
