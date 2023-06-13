@@ -10,8 +10,6 @@ public class KillerSpawner : MonoBehaviour
     public float _maxSpawnTime = 8f; // 적 스폰 최대 시간 간격
 
     private Transform[] _spawnPoints; // 적 스폰 위치 배열
-    public int _spawnedKillerCount; // 현재 스폰된 적 수
-
     private bool _isSpawning; // 스폰 중인지 여부
 
     private void Start()
@@ -27,7 +25,7 @@ public class KillerSpawner : MonoBehaviour
         StartSpawning();
     }
 
-    private void StartSpawning()
+    public void StartSpawning()
     {
         if (!_isSpawning)
         {
@@ -36,7 +34,7 @@ public class KillerSpawner : MonoBehaviour
         }
     }
 
-    private void StopSpawning()
+    public void StopSpawning()
     {
         if (_isSpawning)
         {
@@ -47,35 +45,31 @@ public class KillerSpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
+        // 게임 시작 후 최초의 스폰은 바로 실행되지 않도록 대기
+        yield return new WaitForSeconds(Random.Range(_minSpawnTime, _maxSpawnTime));
+
         while (_isSpawning)
         {
-            // 랜덤한 시간 간격으로 스폰
-            float spawnTime = Random.Range(_minSpawnTime, _maxSpawnTime);
-            yield return new WaitForSeconds(spawnTime);
+            // 스폰된 킬러가 없는 경우에만 적 생성
+            if (GameObject.FindGameObjectsWithTag("Killer").Length < 1)
+            {
+                // 랜덤한 위치에서 적 생성
+                Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+                GameObject enemyObject = Instantiate(_killerPrefab, spawnPoint.position, spawnPoint.rotation);
 
-            // 랜덤한 위치에서 적 생성
-            Transform spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
-            GameObject enemyObject = Instantiate(_killerPrefab, spawnPoint.position, spawnPoint.rotation);
+                // 적이 플레이어를 바라보도록 회전
+                Vector3 direction = (GameObject.FindWithTag("Player").transform.position - enemyObject.transform.position).normalized;
+                enemyObject.transform.LookAt(enemyObject.transform.position + direction);
 
-            // 적이 플레이어를 바라보도록 회전
-            Vector3 direction = (GameObject.FindWithTag("Player").transform.position - enemyObject.transform.position).normalized;
-            enemyObject.transform.LookAt(enemyObject.transform.position + direction);
+                // 생성된 적이 삭제될 때까지 대기
+                yield return new WaitUntil(() => enemyObject == null);
+            }
 
-            // 스폰된 적 수 증가
-            _spawnedKillerCount++;
+            // 일정 시간 동안 대기
+            yield return new WaitForSeconds(Random.Range(_minSpawnTime, _maxSpawnTime));
         }
-    }
 
-    private void Update()
-    {
-        // 한마리만 스폰했을 경우
-        if (_spawnedKillerCount >= 1)
-        {
-            StopSpawning(); // 스폰 중지
-        }
-        else if (_spawnedKillerCount == 0)
-        {
-            StartSpawning(); // 스폰 시작
-        }
+        // 스폰 중지 후 다시 시작 가능하도록 설정
+        _isSpawning = false;
     }
 }

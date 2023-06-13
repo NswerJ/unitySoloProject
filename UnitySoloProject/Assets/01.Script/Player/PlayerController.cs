@@ -6,11 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
     public Slider slider;
     public Slider secondSlider;
     public LayerMask targetLayer;
-    public LayerMask killerLayer; // 적 레이어
+    public LayerMask killerLayer;
 
     private float decreaseAmount = 0.1f;
     private float decreaseInterval = 0.5f;
@@ -18,14 +17,7 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private bool firstSlider = false;
     private bool secondSliderActive = false;
-    RaycastHit hit;
-
-
-    private void Awake()
-    {
-        slider = FindObjectOfType<Slider>();
-        secondSlider = slider.transform.GetChild(0).GetComponent<Slider>();
-    }
+    private RaycastHit hit;
 
     private void Start()
     {
@@ -33,12 +25,11 @@ public class PlayerController : MonoBehaviour
         timer = decreaseInterval;
         slider.gameObject.SetActive(false);
         secondSlider.gameObject.SetActive(false);
-        killerLayer = LayerMask.GetMask("Killer"); // 적 레이어 가져오기
+        killerLayer = LayerMask.GetMask("Killer");
     }
 
     private void Update()
     {
-        // 왼쪽 마우스 버튼 클릭 시 실행
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 clickPosition = Input.mousePosition;
@@ -69,28 +60,22 @@ public class PlayerController : MonoBehaviour
                     secondSlider.value += 2;
                 }
 
-                // 푸쉬(push) 코드 추가
                 PoolList.instance.Push(hit.transform.gameObject);
             }
         }
 
-        // 오른쪽 마우스 버튼 클릭 시 실행
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Debug.Log("눌러지냐");
 
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, killerLayer)) // 적 레이어를 사용하여 충돌 검사
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, killerLayer))
             {
-                Debug.Log("사라지는게 맞아");
                 GameObject clickedObject = hit.collider.gameObject;
                 Destroy(clickedObject);
-                KillerSpawner killerSpawner = FindObjectOfType<KillerSpawner>();
-                killerSpawner._spawnedKillerCount--;
+                StartCoroutine(RespawnKiller()); // 삭제 후 잠시 후에 적 재스폰
             }
         }
 
-        // 일정 시간마다 첫 번째 슬라이더 값 감소
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
@@ -122,6 +107,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator RespawnKiller()
+    {
+        // 잠시 기다린 후에 적 재스폰
+        yield return new WaitForSeconds(Random.Range(4f, 8f));
+
+        // 적이 0마리인 경우에만 재스폰
+        if (GameObject.FindGameObjectsWithTag("Killer").Length == 0)
+        {
+            KillerSpawner killerSpawner = FindObjectOfType<KillerSpawner>();
+            killerSpawner.StartSpawning();
+        }
+    }
 }
 
 
