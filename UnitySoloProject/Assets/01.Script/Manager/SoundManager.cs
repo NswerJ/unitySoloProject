@@ -21,6 +21,8 @@ public class SoundManager : MonoBehaviour
         root = document.rootVisualElement;
         volumeSlider = root.Q<Slider>("volumeSlider");
         volumeSlider.RegisterCallback<ChangeEvent<float>>(OnSliderValueChanged);
+
+        
     }
 
     private void OnSliderValueChanged(ChangeEvent<float> evt)

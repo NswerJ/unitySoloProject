@@ -25,6 +25,7 @@ public class StartUI : MonoBehaviour
         Button stBtn = root.Q<Button>("SettingButton");
         Button stBtnX = root.Q<Button>("StButtonX");
         VisualElement setting = root.Q("Setting");
+        
 
         startBtn.RegisterCallback<ClickEvent>(e =>
         {

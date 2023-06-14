@@ -1,0 +1,126 @@
+#Container {
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    -unity-text-align: upper-center;
+    white-space: normal;
+    margin-top: 10%;
+    font-size: 200px;
+    color: rgb(255, 255, 255);
+    -unity-font: url('project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&guid=8b286184e29dd0a4ba08c3d96ed22d22&type=3#Nightmare 5');
+    -unity-font-definition: url('project://database/Assets/08.Font/Nightmare%205%20SDF.asset?fileID=11400000&guid=09ee949f4a181d24fbd13b27449d20e2&type=2#Nightmare 5 SDF');
+}
+
+#Button {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 64px;
+    margin-left: 64px;
+    margin-right: 64px;
+    margin-bottom: 64px;
+    top: -100%;
+}
+
+#Button > .btn:hover {
+    background-color: rgb(96, 3, 3);
+    transition-property: background-color, scale, ignored;
+    transition-duration: 0.5s, 0.5s, 0s;
+    scale: 1.2 1;
+    rotate: 10deg;
+}
+
+#Button > .btn {
+    margin-top: 77px;
+    margin-left: 77px;
+    margin-right: 77px;
+    margin-bottom: 77px;
+    width: 20%;
+    height: 20%;
+    background-color: rgb(149, 0, 0);
+    color: rgb(0, 0, 0);
+    font-size: 100px;
+    -unity-font: url('project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&guid=8b286184e29dd0a4ba08c3d96ed22d22&type=3#Nightmare 5');
+    -unity-font-definition: url('project://database/Assets/08.Font/Nightmare%205%20SDF.asset?fileID=11400000&guid=09ee949f4a181d24fbd13b27449d20e2&type=2#Nightmare 5 SDF');
+    -unity-font-style: normal;
+    -unity-text-align: upper-center;
+    white-space: normal;
+}
+
+#Button.down {
+    top: 200px;
+    transition-property: top;
+    transition-duration: 0.5s;
+    transition-delay: 0.5s;
+}
+
+#Explain {
+    background-color: rgba(0, 0, 0, 0.73);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: -100%;
+}
+
+#Explain.down {
+    transition-property: top;
+    transition-duration: 0.6s;
+    top: 0;
+    transition-delay: 0.5s;
+}
+
+#ExButtonX:hover {
+    background-color: rgb(94, 0, 0);
+    scale: 3 3;
+    rotate: -30deg;
+    transition-property: rotate, scale, background-color;
+    transition-duration: 0.5s, 0.5s, 0.5s;
+    transition-delay: 0s, 0s, 0s;
+}
+
+#ExButtonX {
+    scale: 2 2;
+    background-color: rgb(250, 20, 20);
+    top: -50%;
+    right: -45%;
+}
+
+#Setting {
+    background-color: rgba(0, 0, 0, 0.73);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: -100%;
+}
+
+#Setting.down {
+    transition-property: top;
+    transition-duration: 0.6s;
+    transition-delay: 0.5s;
+    top: 0;
+}
+
+#StButtonX:hover {
+    background-color: rgb(94, 0, 0);
+    scale: 3 3;
+    rotate: -30deg;
+    transition-property: rotate, scale, background-color;
+    transition-duration: 0.5s, 0.5s, 0.5s;
+    transition-delay: 0s, 0s, 0s;
+}
+
+#StButtonX {
+    scale: 2 2;
+    background-color: rgb(250, 20, 20);
+    top: -40%;
+    right: -45%;
+}
+
+#volumeSlider {
+}

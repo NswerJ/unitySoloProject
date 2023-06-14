@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KillerController : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class KillerController : MonoBehaviour
     [SerializeField]
     private AudioSource _boomSound;
 
-
+    UIManager _UIManager;
     private void Start()
     {
         _playerTransform = GameObject.FindWithTag("Player").transform;
@@ -24,12 +25,14 @@ public class KillerController : MonoBehaviour
         // 추격 시작 타이머 설정
         _chaseTimer = Random.Range(_minChaseTime, _maxChaseTime);
         StartCoroutine(StartChasing());
+        _UIManager = FindObjectOfType<UIManager>();
     }
 
     private void Update()
     {
         if (_isChasing)
         {
+            _UIManager._canRotate = false;
             Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
             directionToPlayer.y = 0;
             _playerTransform.rotation = Quaternion.LookRotation(-directionToPlayer);
@@ -53,8 +56,16 @@ public class KillerController : MonoBehaviour
                 Debug.Log("!!!!!");
                 _isChasing = false;
             }
+
+            StartCoroutine(GameOver());
            
         }
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("GameOver");
     }
 
     private IEnumerator StartChasing()

@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private bool _turn = false;
-    private bool _canRotate = true; // Added variable to control rotation
+    public bool _canRotate = true; // Added variable to control rotation
 
     private Vector3 _currentRotation = Vector3.zero;
 
