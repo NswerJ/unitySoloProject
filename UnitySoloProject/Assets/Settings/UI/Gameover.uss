@@ -1,0 +1,67 @@
+#QuitButton {
+    margin-top: 175px;
+    top: 288px;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
+    background-color: rgba(152, 0, 0, 255);
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    right: -40%;
+    height: 120px;
+    -unity-font: url('project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&guid=8b286184e29dd0a4ba08c3d96ed22d22&type=3#Nightmare 5');
+    -unity-font-definition: url('project://database/Assets/08.Font/Nightmare%205%20SDF.asset?fileID=11400000&guid=09ee949f4a181d24fbd13b27449d20e2&type=2#Nightmare 5 SDF');
+    font-size: 100px;
+}
+
+#ReStartButton {
+    margin-top: 175px;
+    top: 258px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgb(152, 0, 0);
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    right: -40%;
+    height: 120px;
+    -unity-font: url('project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&guid=8b286184e29dd0a4ba08c3d96ed22d22&type=3#Nightmare 5');
+    -unity-font-definition: url('project://database/Assets/08.Font/Nightmare%205%20SDF.asset?fileID=11400000&guid=09ee949f4a181d24fbd13b27449d20e2&type=2#Nightmare 5 SDF');
+    font-size: 100px;
+}
+
+#ReStartButton:hover {
+    margin-top: 175px;
+    top: 258px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgb(87, 3, 3);
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    right: -40%;
+    height: 120px;
+    -unity-font: url('project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&guid=8b286184e29dd0a4ba08c3d96ed22d22&type=3#Nightmare 5');
+    -unity-font-definition: url('project://database/Assets/08.Font/Nightmare%205%20SDF.asset?fileID=11400000&guid=09ee949f4a181d24fbd13b27449d20e2&type=2#Nightmare 5 SDF');
+    font-size: 100px;
+    rotate: 10deg;
+    scale: 1.5 1.5;
+    transition-property: background-color, scale;
+    transition-duration: 0.5s, 0.5s;
+}
+
+#QuitButton:hover {
+    margin-top: 175px;
+    top: 288px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgb(87, 3, 3);
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    right: -40%;
+    height: 120px;
+    -unity-font: url('project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&guid=8b286184e29dd0a4ba08c3d96ed22d22&type=3#Nightmare 5');
+    -unity-font-definition: url('project://database/Assets/08.Font/Nightmare%205%20SDF.asset?fileID=11400000&guid=09ee949f4a181d24fbd13b27449d20e2&type=2#Nightmare 5 SDF');
+    font-size: 100px;
+    scale: 1.5 1.5;
+    transition-property: background-color, scale;
+    transition-duration: 0.5s, 0.5s;
+    rotate: 10deg;
+}

@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private bool firstSlider = false;
     private bool secondSliderActive = false;
-    private RaycastHit hit;
+
+
 
     private void Start()
     {

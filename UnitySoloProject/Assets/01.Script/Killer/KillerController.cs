@@ -11,7 +11,7 @@ public class KillerController : MonoBehaviour
     public float _maxChaseTime = 8f; 
 
     private Transform _playerTransform; 
-    private bool _isChasing = false; 
+    public bool _isChasing = false; 
     private float _chaseTimer;
 
     [SerializeField]
@@ -64,7 +64,7 @@ public class KillerController : MonoBehaviour
 
     private IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("GameOver");
     }
 
