@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -19,6 +20,11 @@ public class PlayerController : MonoBehaviour
     private bool firstSlider = false;
     private bool secondSliderActive = false;
     KillerSpawner killerSpawner;
+
+    [SerializeField]
+    private UnityEvent firstSliderOn = null;
+    [SerializeField]
+    private UnityEvent changeChaseTime = null;
 
 
     private void Start()
@@ -51,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
                     if (slider.value >= slider.maxValue)
                     {
+                        changeChaseTime?.Invoke();
+                        firstSliderOn?.Invoke();
                         slider.value = slider.maxValue;
                         secondSlider.gameObject.SetActive(true);
                         secondSliderActive = true;

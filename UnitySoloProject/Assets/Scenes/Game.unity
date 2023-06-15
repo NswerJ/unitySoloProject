@@ -26517,7 +26517,7 @@ MonoBehaviour:
   _killerPrefab: {fileID: 839226107046108425, guid: 6a3cf0cfc130d9c4caa52b7a832880cb, type: 3}
   _spawnPointsParent: {fileID: 1158109490}
   _minSpawnTime: 4
-  _maxSpawnTime: 8
+  _maxSpawnTime: 7
 --- !u!1001 &1159503678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44770,6 +44770,36 @@ MonoBehaviour:
   killerLayer:
     serializedVersion: 2
     m_Bits: 256
+  firstSliderOn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1158109491}
+        m_TargetAssemblyTypeName: KillerSpawner, Assembly-CSharp
+        m_MethodName: SecondSpawnTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  changeChaseTime:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 839226107046108431, guid: 6a3cf0cfc130d9c4caa52b7a832880cb, type: 3}
+        m_TargetAssemblyTypeName: KillerController, Assembly-CSharp
+        m_MethodName: ChageChaseTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &2008755966
 Transform:
   m_ObjectHideFlags: 0

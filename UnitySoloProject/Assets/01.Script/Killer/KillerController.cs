@@ -13,7 +13,8 @@ public class KillerController : MonoBehaviour
     public float _maxChaseTime = 8f; 
 
     private Transform _playerTransform; 
-    public bool _isChasing = false; 
+    public bool _isChasing = false;
+    [SerializeField]
     private float _chaseTimer;
 
     [SerializeField]
@@ -103,6 +104,11 @@ public class KillerController : MonoBehaviour
         SceneManager.LoadScene("GameOver");
     }
 
+    public void ChageChaseTime()
+    {
+        _chaseTimer = 3f;
+        Debug.Log(_chaseTimer);
+    }
 
     private IEnumerator StartChasing()
     {
