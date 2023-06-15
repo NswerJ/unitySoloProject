@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private bool firstSlider = false;
     private bool secondSliderActive = false;
-
+    KillerSpawner killerSpawner;
 
 
     private void Start()
@@ -106,6 +107,10 @@ public class PlayerController : MonoBehaviour
 
             timer = decreaseInterval;
         }
+        if(secondSlider.value == 100)
+        {
+            SceneManager.LoadScene("ClearScene");
+        }
     }
 
     private IEnumerator RespawnKiller()
@@ -116,7 +121,7 @@ public class PlayerController : MonoBehaviour
         // 적이 0마리인 경우에만 재스폰
         if (GameObject.FindGameObjectsWithTag("Killer").Length == 0)
         {
-            KillerSpawner killerSpawner = FindObjectOfType<KillerSpawner>();
+            killerSpawner = FindObjectOfType<KillerSpawner>();
             killerSpawner.StartSpawning();
         }
     }

@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Settings/UI/Gameover.uss?fileID=7433441132597879392&amp;guid=1384ece2ec6f64147a6a37f14596114b&amp;type=3#Gameover" />
+    <ui:VisualElement name="Container" style="width: 100%; height: 100%;">
+        <ui:Label text="congratulations" display-tooltip-when-elided="true" name="Clear" style="align-items: center; justify-content: center; -unity-text-align: upper-center; font-size: 200px; margin-bottom: -229px; margin-top: 92px; -unity-font: url(&apos;project://database/Assets/08.Font/7-nightmare_5/Nightmare%205.ttf?fileID=12800000&amp;guid=8b286184e29dd0a4ba08c3d96ed22d22&amp;type=3#Nightmare 5&apos;); -unity-font-definition: url(&apos;project://database/Assets/08.Font/ChosunCentennial_ttf/ChosunCentennial_ttf%20SDF.asset?fileID=11400000&amp;guid=724352104c2fb654caa3977e14448cda&amp;type=2#ChosunCentennial_ttf SDF&apos;); background-color: rgb(0, 0, 0); color: rgba(255, 255, 255, 255);" />
+        <ui:Button text="Quit Game" display-tooltip-when-elided="true" name="QuitButton" class="btn" />
+        <ui:Button text="ReStartGame" display-tooltip-when-elided="true" name="ReStartButton" class="btn" />
+    </ui:VisualElement>
+</ui:UXML>

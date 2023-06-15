@@ -347,6 +347,10 @@ MonoBehaviour:
   _maxChaseTime: 8
   _isChasing: 0
   _boomSound: {fileID: 839226107046108424}
+  volume: {fileID: 0}
+  intensityIncrement: 0.005
+  smoothnessIncrement: 0.01
+  changeInterval: 0.1
 --- !u!82 &839226107046108424
 AudioSource:
   m_ObjectHideFlags: 0
