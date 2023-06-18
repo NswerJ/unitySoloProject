@@ -19,8 +19,7 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private bool firstSlider = false;
     private bool secondSliderActive = false;
-    KillerSpawner killerSpawner;
-
+    
     [SerializeField]
     private UnityEvent firstSliderOn = null;
     [SerializeField]
@@ -74,17 +73,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, killerLayer))
-            {
-                GameObject clickedObject = hit.collider.gameObject;
-                Destroy(clickedObject);
-                StartCoroutine(RespawnKiller()); // 삭제 후 잠시 후에 적 재스폰
-            }
-        }
+        
 
         timer -= Time.deltaTime;
         if (timer <= 0f)
@@ -118,19 +107,6 @@ public class PlayerController : MonoBehaviour
         if(secondSlider.value == 100)
         {
             SceneManager.LoadScene("ClearScene");
-        }
-    }
-
-    private IEnumerator RespawnKiller()
-    {
-        // 잠시 기다린 후에 적 재스폰
-        yield return new WaitForSeconds(Random.Range(4f, 8f));
-
-        // 적이 0마리인 경우에만 재스폰
-        if (GameObject.FindGameObjectsWithTag("Killer").Length == 0)
-        {
-            killerSpawner = FindObjectOfType<KillerSpawner>();
-            killerSpawner.StartSpawning();
         }
     }
 }

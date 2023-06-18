@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class KillerController : MonoBehaviour
 {
-    public float _movementSpeed = 3f; 
-    public float _minDistanceToPlayer = 5f; 
-    public float _minChaseTime = 5f; 
-    public float _maxChaseTime = 8f; 
+    public float _movementSpeed = 3f;
+    public float _minDistanceToPlayer = 5f;
+    public float _minChaseTime = 5f;
+    public float _maxChaseTime = 8f;
 
-    private Transform _playerTransform; 
+    private Transform _playerTransform;
     public bool _isChasing = false;
+    public bool _killKiller = false;
     [SerializeField]
     private float _chaseTimer;
 
@@ -25,6 +27,8 @@ public class KillerController : MonoBehaviour
     public Volume volume;
     private Vignette vig;
 
+    public LayerMask killerLayer;
+    KillerSpawner killerSpawner;
 
     public float intensityIncrement = 0.05f; // Intensity 증가량
     public float smoothnessIncrement = 0.1f; // Smoothness 증가량
@@ -41,12 +45,16 @@ public class KillerController : MonoBehaviour
         StartCoroutine(StartChasing());
         volume = _playerTransform.GetComponentInChildren<Volume>();
         _UIManager = FindObjectOfType<UIManager>();
+        killerLayer = LayerMask.GetMask("Killer");
+        _killKiller = true;
     }
 
     private void Update()
     {
+
         if (_isChasing)
         {
+            _killKiller = false;
             _UIManager._canRotate = false;
             Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
             directionToPlayer.y = 0;
@@ -58,7 +66,7 @@ public class KillerController : MonoBehaviour
             if (distanceToPlayer > _minDistanceToPlayer)
             {
                 transform.Translate(directionToPlayer * _movementSpeed * Time.deltaTime, Space.World);
-                
+
             }
             else
             {
@@ -66,7 +74,7 @@ public class KillerController : MonoBehaviour
                 _boomSound.Play();
                 if (playerLight != null)
                 {
-                    playerLight.intensity = 6f;
+                    playerLight.intensity = 8f;
                 }
                 Debug.Log("!!!!!");
                 _isChasing = false;
@@ -80,8 +88,50 @@ public class KillerController : MonoBehaviour
             {
                 Debug.LogWarning("Vignette component not found in the Global Volume!");
             }
+        }
+        else
+        {
+            if (_killKiller)
+            {
+                InputCheck();
+            }
+        }
 
-           
+    }
+    private void InputCheck()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (_isChasing)
+            {
+                Debug.Log("_isChasing is true!!!");
+                return;
+            }
+            else
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, killerLayer))
+                {
+                    GameObject clickedObject = hit.collider.gameObject;
+                    Destroy(clickedObject);
+                    StartCoroutine(RespawnKiller()); // 삭제 후 잠시 후에 적 재스폰
+                }
+            }
+
+        }
+    }
+
+    private IEnumerator RespawnKiller()
+    {
+        // 잠시 기다린 후에 적 재스폰
+        yield return new WaitForSeconds(Random.Range(4f, 8f));
+
+        // 적이 0마리인 경우에만 재스폰
+        if (GameObject.FindGameObjectsWithTag("Killer").Length == 0)
+        {
+            killerSpawner = FindObjectOfType<KillerSpawner>();
+            killerSpawner.StartSpawning();
         }
     }
     private IEnumerator ChangeVignetteValues()
@@ -96,7 +146,7 @@ public class KillerController : MonoBehaviour
             vig.smoothness.value = Mathf.Clamp01(targetSmoothness);
 
             yield return new WaitForSeconds(changeInterval);
-            if(vig.intensity.value == 1 && vig.smoothness.value == 1)
+            if (vig.intensity.value == 1 && vig.smoothness.value == 1)
             {
                 break;
             }
@@ -115,6 +165,4 @@ public class KillerController : MonoBehaviour
         yield return new WaitForSeconds(_chaseTimer);
         _isChasing = true;
     }
-
-    
 }

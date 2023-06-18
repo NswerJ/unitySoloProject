@@ -349,6 +349,9 @@ MonoBehaviour:
   _chaseTimer: 3
   _boomSound: {fileID: 839226107046108424}
   volume: {fileID: 0}
+  killerLayer:
+    serializedVersion: 2
+    m_Bits: 256
   intensityIncrement: 0.005
   smoothnessIncrement: 0.01
   changeInterval: 0.1
