@@ -19728,8 +19728,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentObject: {fileID: 611680546}
   childObject: {fileID: 802660157795158893, guid: 93e01454df0584844941e61525bfe2fb, type: 3}
-  minPosition: {x: -5.5, y: 2.5, z: 25.2}
-  maxPosition: {x: -5.5, y: 1.5, z: 26}
+  minPosition: {x: -5.3, y: 2.5, z: 25.2}
+  maxPosition: {x: -5.3, y: 1.5, z: 26}
   minSpawnInterval: 1
   maxSpawnInterval: 1.5
   maxObjectCount: 5
