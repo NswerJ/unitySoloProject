@@ -12,9 +12,11 @@ public class UIManager : MonoBehaviour
     private Light _light;
     public Transform _cameraTrm;
 
+
     [SerializeField]
     private bool _turn = false;
     public bool _canRotate = true; // Added variable to control rotation
+
 
     private Vector3 _currentRotation = Vector3.zero;
 
@@ -23,6 +25,7 @@ public class UIManager : MonoBehaviour
         _light = GameObject.Find("LightHandle").GetComponent<Light>();
         _light.intensity = 1f;
         _currentRotation = _cameraTrm.eulerAngles;
+
     }
 
     public void Update()
@@ -55,6 +58,7 @@ public class UIManager : MonoBehaviour
             StopRotation();
         }
     }
+    
 
     public void RRotationChange()
     {
@@ -104,6 +108,8 @@ public class UIManager : MonoBehaviour
         _turn = false;
 
         yield return new WaitForSeconds(.5f); // Add a 1-second delay
-        _canRotate = true; // Enable rotation after the delay
+        _canRotate = true;
     }
+
+    
 }

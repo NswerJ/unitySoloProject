@@ -19,11 +19,16 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private bool firstSlider = false;
     private bool secondSliderActive = false;
-    
+
     [SerializeField]
     private UnityEvent firstSliderOn = null;
     [SerializeField]
     private UnityEvent changeChaseTime = null;
+
+    private Light playerLight; // Reference to the player's Light component
+    private float blinkSpeed = 2f; // Speed of blinking (how fast the intensity changes)
+    private float blinkDuration = 3f; // Duration of one complete blink cycle
+    private float blinkTimer; // Timer to track the progress of the blinking
 
 
     private void Start()
@@ -33,6 +38,9 @@ public class PlayerController : MonoBehaviour
         slider.gameObject.SetActive(false);
         secondSlider.gameObject.SetActive(false);
         killerLayer = LayerMask.GetMask("Killer");
+
+        playerLight = GetComponentInChildren<Light>(); // Get the Light component from a child object of the player
+        blinkTimer = 0f; // Initialize the blink timer
     }
 
     private void Update()
@@ -61,6 +69,7 @@ public class PlayerController : MonoBehaviour
                         slider.value = slider.maxValue;
                         secondSlider.gameObject.SetActive(true);
                         secondSliderActive = true;
+                        StartBlinking();
                     }
                 }
 
@@ -107,6 +116,42 @@ public class PlayerController : MonoBehaviour
         if(secondSlider.value == 100)
         {
             SceneManager.LoadScene("ClearScene");
+        }
+    }
+    private void StartBlinking()
+    {
+        // Reset the blink timer
+        blinkTimer = 0f;
+
+        // Start the blinking coroutine
+        StartCoroutine(BlinkLightCoroutine());
+    }
+    private IEnumerator BlinkLightCoroutine()
+    {
+        // Calculate the blink phase (0 to 1) based on the blink timer and duration
+        float blinkPhase = Mathf.PingPong(blinkTimer, blinkDuration) / blinkDuration;
+
+        // Calculate the intensity value using a sin function to create the blinking effect
+        float intensity = Mathf.Lerp(0.1f, 1f, Mathf.Sin(blinkPhase * Mathf.PI));
+
+        // Set the light intensity
+        playerLight.intensity = intensity;
+
+        // Update the blink timer
+        blinkTimer += Time.deltaTime * blinkSpeed;
+
+        yield return null;
+
+        // Check if the first slider is still filled
+        if (slider.value >= slider.maxValue)
+        {
+            // Continue the blinking coroutine
+            StartCoroutine(BlinkLightCoroutine());
+        }
+        else
+        {
+            // Reset the light intensity to 0
+            playerLight.intensity = 0f;
         }
     }
 }
