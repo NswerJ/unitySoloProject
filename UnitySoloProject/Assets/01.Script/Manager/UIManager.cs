@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour
         _light = GameObject.Find("LightHandle").GetComponent<Light>();
         _light.intensity = 1f;
         _currentRotation = _cameraTrm.eulerAngles;
-
     }
 
     public void Update()
