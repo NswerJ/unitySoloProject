@@ -54,8 +54,8 @@ public class KillerController : MonoBehaviour
 
         if (_isChasing)
         {
-            _killKiller = false;
             _UIManager._canRotate = false;
+            _killKiller = false;
             Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
             directionToPlayer.y = 0;
             _playerTransform.rotation = Quaternion.LookRotation(-directionToPlayer);

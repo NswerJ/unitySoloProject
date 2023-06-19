@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class StartUI : MonoBehaviour
 {
+    public AudioSource _clickAudio;
     private UIDocument _uiDocument;
     // Start is called before the first frame update
     void Awake()
@@ -29,7 +32,8 @@ public class StartUI : MonoBehaviour
 
         startBtn.RegisterCallback<ClickEvent>(e =>
         {
-            SceneManager.LoadScene("Game");
+            _clickAudio.Play();
+            StartCoroutine(GameScene());
         });
         exBtn.RegisterCallback<ClickEvent>(e =>
         {
@@ -47,5 +51,11 @@ public class StartUI : MonoBehaviour
         {
             setting.RemoveFromClassList("down");
         });
+    }
+
+    private IEnumerator GameScene()
+    {
+        yield return new WaitForSeconds(1.2f);
+        SceneManager.LoadScene("Game");
     }
 }
